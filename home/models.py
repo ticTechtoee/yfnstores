@@ -6,6 +6,6 @@ class Products(models.Model):
     image1 = models.ImageField(upload_to='post_images/',blank=True, null=True)
     image2 = models.ImageField(upload_to='post_images/',blank=True, null=True)
     image3 = models.ImageField(upload_to='post_images/',blank=True, null=True)
-    cardImage = models.ImageField(blank=True,null=True)
+    cardLink = models.URLField(max_length=500)
     def __str__(self):
         return self.title

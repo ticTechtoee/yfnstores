@@ -30,7 +30,7 @@
                   <a href="{{item.image1.url}}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{item.image1.url}}" class="img-fluid" alt=""></a>
                   <div class="portfolio-info">
                     <h4><a href="{% url 'home:productDetails' item.id %}" title="More Details">{{item.title}}</a></h4>
-                    <p>{{item.description}}</p>
+                    <p>{{item.description|slice:":100"}}</p>
                   </div>
                 </div>
               </div><!-- End Portfolio Item -->
