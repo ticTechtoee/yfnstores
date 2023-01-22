@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Products
 from django.conf import settings
-from django.http import HttpResponse
+from django.contrib import messages
 from django.core.mail import EmailMultiAlternatives
 
 def index(request):
@@ -17,11 +17,12 @@ def index(request):
         
         from_email = settings.EMAIL_HOST_USER
         to_email = ("yfnstores@gmail.com", "")
-        message = EmailMultiAlternatives(
+        Emailmessage = EmailMultiAlternatives(
             subject=subject, body=email_body, from_email=from_email, to=to_email
         )
-        message.content_subtype = "html"
-        message.send()
+        Emailmessage.content_subtype = "html"
+        Emailmessage.send()
+        messages.success(request, "Message sent." )
     return render(request, 'home/index.html', context)
 
 def prod_details(request,pk):

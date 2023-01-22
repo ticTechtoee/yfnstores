@@ -3,113 +3,123 @@
 {% load static %}
 
 
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio sections-bg">
-        <div class="container" data-aos="fade-up">
-  
-          
-  
-          <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
-  
+<!-- ======= Portfolio Section ======= -->
+<section id="portfolio" class="portfolio sections-bg">
+  <div class="container" data-aos="fade-up">
+
+
+
+    <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
+      data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
+
+      <div>
+        <ul class="portfolio-flters">
+
+          <li data-filter=".filter-product">Product</li>
+
+        </ul><!-- End Portfolio Filters -->
+      </div>
+
+      <div class="row gy-4 portfolio-container">
+        {% for item in Products %}
+
+        <div class="col-xl-4 col-md-6 portfolio-item filter-app">
+          <div class="portfolio-wrap">
+            <a href="{{item.image1.url}}" data-gallery="portfolio-gallery-app" class="glightbox"><img
+                src="{{item.image1.url}}" class="img-fluid" alt=""></a>
+            <div class="portfolio-info">
+              <h4><a href="{% url 'home:productDetails' item.id %}" title="More Details">{{item.title}}</a></h4>
+              {% comment %} <p>{{item.description|safe|slice:":100"}}</p> {% endcomment %}
+              <p>{{item.short_description}}</p>
+            </div>
+          </div>
+        </div><!-- End Portfolio Item -->
+        {% endfor %}
+
+
+      </div><!-- End Portfolio Container -->
+
+    </div>
+
+  </div>
+</section><!-- End Portfolio Section -->
+
+
+
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-header">
+      <h2>Contact</h2>
+      <p>Feel free to contact us anytime we will try to get back to you ASAP.</p>
+    </div>
+    {% for message in messages %}
+    <div id="message_container" class="container-fluid p-0">
+      <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+        
+        {{ message }}
+      </div>
+    </div>
+    {% endfor %}
+    <div class="row gx-lg-0 gy-4">
+
+      <div class="col-lg-4">
+
+        <div class="info-container d-flex flex-column align-items-center justify-content-center">
+
+
+          <div class="info-item d-flex">
+            <i class="bi bi-envelope flex-shrink-0"></i>
             <div>
-              <ul class="portfolio-flters">
-               
-                <li data-filter=".filter-product">Product</li>
-                
-              </ul><!-- End Portfolio Filters -->
+              <h4>Email:</h4>
+              <p>yfnstores@gmail.com</p>
             </div>
-  
-            <div class="row gy-4 portfolio-container">
-              {% for item in Products %}
-              
-              <div class="col-xl-4 col-md-6 portfolio-item filter-app">
-                <div class="portfolio-wrap">
-                  <a href="{{item.image1.url}}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{item.image1.url}}" class="img-fluid" alt=""></a>
-                  <div class="portfolio-info">
-                    <h4><a href="{% url 'home:productDetails' item.id %}" title="More Details">{{item.title}}</a></h4>
-                    {% comment %} <p>{{item.description|safe|slice:":100"}}</p> {% endcomment %}
-                    <p>{{item.short_description}}</p>
-                  </div>
-                </div>
-              </div><!-- End Portfolio Item -->
-              {% endfor %}
-  
-  
-            </div><!-- End Portfolio Container -->
-  
-          </div>
-  
-        </div>
-      </section><!-- End Portfolio Section -->
-  
-     
-  
-      <!-- ======= Contact Section ======= -->
-      <section id="contact" class="contact">
-        <div class="container" data-aos="fade-up">
-  
-          <div class="section-header">
-            <h2>Contact</h2>
-            <p>Feel free to contact us anytime we will try to get back to you ASAP.</p>
-          </div>
-  
-          <div class="row gx-lg-0 gy-4">
-  
-            <div class="col-lg-4">
-  
-              <div class="info-container d-flex flex-column align-items-center justify-content-center">
-                
-  
-                <div class="info-item d-flex">
-                  <i class="bi bi-envelope flex-shrink-0"></i>
-                  <div>
-                    <h4>Email:</h4>
-                    <p>yfnstores@gmail.com</p>
-                  </div>
-                </div><!-- End Info Item -->
-  
-                
-  
-                <div class="info-item d-flex">
-                  <i class="bi bi-clock flex-shrink-0"></i>
-                  <div>
-                    <h4>Open Hours:</h4>
-                    <p>24 Hrs</p>
-                  </div>
-                </div><!-- End Info Item -->
-              </div>
-  
+          </div><!-- End Info Item -->
+
+
+
+          <div class="info-item d-flex">
+            <i class="bi bi-clock flex-shrink-0"></i>
+            <div>
+              <h4>Open Hours:</h4>
+              <p>24 Hrs</p>
             </div>
-  
-            <div class="col-lg-8">
-              <form method="post" class="php-email-form">
-                {% csrf_token %}
-                <div class="row">
-                  <div class="col-md-6 form-group">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                  </div>
-                  <div class="col-md-6 form-group mt-3 mt-md-0">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                  </div>
-                </div>
-                <div class="form-group mt-3">
-                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                </div>
-                <div class="form-group mt-3">
-                  <textarea class="form-control" name="message" rows="7" placeholder="Message" required></textarea>
-                </div>
-                <div class="my-3">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-                </div>
-                <div class="text-center"><button type="submit" name="ESend">Send Message</button></div>
-              </form>
-            </div><!-- End Contact Form -->
-  
-          </div>
-  
+          </div><!-- End Info Item -->
         </div>
-      </section><!-- End Contact Section -->
+
+      </div>
+
+      <div class="col-lg-8">
+        <form method="post" class="php-email-form">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="col-md-6 form-group mt-3 mt-md-0">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+          </div>
+          <div class="form-group mt-3">
+            <textarea class="form-control" name="message" rows="7" placeholder="Message" required></textarea>
+          </div>
+          <div class="my-3">
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your message has been sent. Thank you!</div>
+          </div>
+          <div class="text-center"><button type="submit" name="ESend">Send Message</button></div>
+        </form>
+      </div><!-- End Contact Form -->
+      
+
+    </div>
+
+  </div>
+</section><!-- End Contact Section -->
 
 {% endblock content %}
