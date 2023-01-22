@@ -27,7 +27,8 @@
                   <a href="{{item.image1.url}}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{item.image1.url}}" class="img-fluid" alt=""></a>
                   <div class="portfolio-info">
                     <h4><a href="{% url 'home:productDetails' item.id %}" title="More Details">{{item.title}}</a></h4>
-                    <p>{{item.description|safe|slice:":100"}}</p>
+                    {% comment %} <p>{{item.description|safe|slice:":100"}}</p> {% endcomment %}
+                    <p>{{item.short_description}}</p>
                   </div>
                 </div>
               </div><!-- End Portfolio Item -->

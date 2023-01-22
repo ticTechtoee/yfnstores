@@ -1,9 +1,10 @@
 from django.db import models
-from django_ckeditor_5.fields import CKEditor5Field
+from ckeditor.fields import RichTextField
 
 class Products(models.Model):
     title = models.CharField(max_length=100)
-    description =  CKEditor5Field()
+    short_description = models.CharField(max_length=100, default="Please Click the Title for Detailed Description.")
+    description =  RichTextField()
     image1 = models.ImageField(upload_to='post_images/', default='post_images/default.jpg',blank=True, null=True)
     image2 = models.ImageField(upload_to='post_images/', default='post_images/default.jpg',blank=True, null=True)
     image3 = models.ImageField(upload_to='post_images/', default='post_images/default.jpg',blank=True, null=True)
